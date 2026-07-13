@@ -9,6 +9,42 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Outfit:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;600&display=swap" rel="stylesheet">
+<!--
+  TODO vor Live-Schaltung:
+  1) GOOGLE_PLACE_ID weiter unten im <script> (kurz vor </body>) durch die echte Place-ID ersetzen.
+     Am einfachsten im Google Business Profil: "Mehr Bewertungen erhalten" -> ergibt einen Kurzlink
+     wie g.page/r/XXXXXXXX/review — XXXXXXXX ist die Place-ID.
+  2) Die Platzhalter "X,X" / "XXX Bewertungen" im Abschnitt #bewertungen durch echte, aktuelle Werte
+     aus dem Google-Profil ersetzen (nicht raten — Google erlaubt kein erfundenes Rating-Markup).
+  3) Die drei Beispielzitate im Abschnitt #bewertungen durch echte, mit Erlaubnis übernommene
+     Gästestimmen ersetzen.
+-->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "Sri Trang Thaimassage Düsseldorf",
+  "telephone": "+49 211 38737898",
+  "email": "info@sri-trang-thaimassage.de",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Pempelforter Str. 47",
+    "addressLocality": "Düsseldorf",
+    "postalCode": "40211",
+    "addressCountry": "DE"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "10:00", "closes": "20:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "19:00" }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/sri.trang.thaimassage/",
+    "https://www.tiktok.com/@sritrangthaimassa",
+    "https://www.facebook.com/people/Sri-Trang-Thaimassage-Düsseldorf/100091730442006/"
+  ]
+}
+</script>
 
 <style>
 :root{
@@ -288,9 +324,6 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
   padding-top:24px;display:flex;justify-content:space-between;
   gap:20px;flex-wrap:wrap;font-size:13px;color:var(--sand-mut);
 }
-.socials{display:flex;gap:18px}
-.socials a{transition:color .2s}
-.socials a:hover{color:var(--marigold)}
 
 /* ── reveal on scroll ── */
 .rise{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
@@ -323,6 +356,85 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
   .price.none{display:none}
   .thai-ghost{font-size:150px;opacity:.028;right:-20%}
 }
+
+/* ══ NAV SOCIAL ══ */
+.nav-social{display:flex;align-items:center;gap:10px;margin-right:6px}
+.nav-social a{
+  width:30px;height:30px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;color:var(--sand-mut);
+  transition:border-color .2s,color .2s;
+}
+.nav-social a:hover{border-color:var(--marigold);color:var(--marigold)}
+.nav-social svg{width:14px;height:14px}
+@media(max-width:900px){.nav-social{display:none}}
+
+/* ══ BEWERTUNGEN (reviews) ══ */
+#bewertungen{border-top:1px solid var(--line)}
+.review-head{
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;
+  gap:32px;margin-bottom:48px;
+}
+.review-badge{
+  display:flex;align-items:center;gap:18px;
+  background:var(--teak-lift);border:1px solid var(--line);border-radius:16px;
+  padding:20px 26px;
+}
+.review-score{font-family:var(--display);font-size:40px;color:var(--marigold);line-height:1}
+.stars{color:var(--marigold);letter-spacing:2px;font-size:15px;margin-bottom:5px}
+.review-meta{font-size:13px;color:var(--sand-mut);max-width:22ch;line-height:1.5}
+.review-cta{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.review-cta p{font-size:14px;color:var(--sand-mut);max-width:30ch}
+.btn-google{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 22px;border-radius:100px;
+  background:var(--sand);color:var(--teak-deep);
+  font-size:14.5px;font-weight:500;transition:all .22s;
+}
+.btn-google:hover{transform:translateY(-1px);background:#fff}
+.btn-google svg{width:17px;height:17px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi{
+  background:var(--teak-lift);border:1px solid var(--line);border-radius:16px;
+  padding:26px;display:flex;flex-direction:column;
+}
+.testi .stars{margin-bottom:14px}
+.testi p{font-size:14.5px;line-height:1.6;color:var(--sand-mut);font-style:italic;margin-bottom:18px;flex:1}
+.testi .who{font-size:12.5px;color:var(--sand-mut);display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;border-top:1px solid var(--line)}
+.testi .who b{color:var(--sand);font-weight:500;font-style:normal}
+@media(max-width:900px){
+  .testi-grid{grid-template-columns:1fr}
+  .review-head{flex-direction:column;align-items:flex-start}
+}
+
+/* ══ FOOTER SOCIAL ICONS ══ */
+.socials{display:flex;gap:12px}
+.socials a{
+  width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;color:var(--sand-mut);
+  transition:border-color .2s,color .2s,background .2s;
+}
+.socials a:hover{border-color:var(--marigold);color:var(--marigold);background:rgba(224,145,60,.08)}
+.socials svg{width:16px;height:16px}
+
+/* ══ FLOATING REVIEW NUDGE ══ */
+.review-float{
+  position:fixed;right:22px;bottom:22px;z-index:60;
+  display:flex;align-items:center;gap:10px;
+  background:var(--sand);color:var(--teak-deep);border-radius:100px;
+  padding:13px 14px 13px 18px;
+  box-shadow:0 18px 40px -14px rgba(0,0,0,.55);
+  font-size:13.5px;font-weight:500;
+  transform:translateY(140%);opacity:0;
+  transition:transform .5s cubic-bezier(.2,.9,.2,1.05),opacity .5s;
+}
+.review-float.show{transform:translateY(0);opacity:1}
+.review-float svg{width:15px;height:15px;flex-shrink:0}
+.review-float button{
+  background:none;border:0;color:inherit;opacity:.4;cursor:pointer;
+  font-size:17px;line-height:1;padding:2px 0 2px 6px;
+}
+.review-float button:hover{opacity:.9}
+@media(max-width:600px){.review-float{left:16px;right:16px;justify-content:center;bottom:16px}}
 </style>
 </head>
 <body>
@@ -330,6 +442,17 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
 <nav id="nav">
   <div class="wrap nav-in">
     <a href="#" class="brand">Sri Trang <span>·</span> Thaimassage</a>
+    <div class="nav-social">
+      <a href="https://www.instagram.com/sri.trang.thaimassage/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@sritrangthaimassa" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.4 3h2.6c.3 1.9 1.6 3.4 3.6 3.8v2.7c-1.4 0-2.7-.4-3.6-1.1v6.2a5.4 5.4 0 1 1-4.6-5.3v2.8a2.6 2.6 0 1 0 2 2.5V3z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/people/Sri-Trang-Thaimassage-Düsseldorf/100091730442006/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 21v-7h2.4l.4-3H14V9.1c0-.9.3-1.5 1.6-1.5H17V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H8v3h2.6v7H14z"/></svg>
+      </a>
+    </div>
     <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">☰</button>
     <div class="nav-links" id="navlinks">
       <a href="#massagen">Massagen</a>
@@ -534,6 +657,50 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
   </div>
 </section>
 
+<section id="bewertungen">
+  <div class="wrap">
+    <div class="review-head rise">
+      <div>
+        <div class="eyebrow">Bewertungen</div>
+        <h2>Was Gäste <em>sagen</em>.</h2>
+      </div>
+      <div class="review-badge">
+        <div>
+          <div class="stars">★★★★★</div>
+          <div class="review-score">X,X</div>
+        </div>
+        <div class="review-meta">Basierend auf <strong>XXX</strong> Google-Bewertungen</div>
+      </div>
+    </div>
+
+    <div class="testi-grid rise">
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>„Hier steht bald eine echte Bewertung aus eurem Google-Profil — einfach kopieren und einfügen.“</p>
+        <div class="who"><b>Beispiel-Gast</b><span>Google, vor Kurzem</span></div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>„Platzhalter-Zitat Nr. 2 — durch eine reale, mit Erlaubnis übernommene Bewertung ersetzen.“</p>
+        <div class="who"><b>Beispiel-Gast</b><span>Google, vor Kurzem</span></div>
+      </div>
+      <div class="testi">
+        <div class="stars">★★★★★</div>
+        <p>„Platzhalter-Zitat Nr. 3 — je aktueller die Bewertungen, desto glaubwürdiger für neue Gäste.“</p>
+        <div class="who"><b>Beispiel-Gast</b><span>Google, vor Kurzem</span></div>
+      </div>
+    </div>
+
+    <div class="review-cta rise" style="margin-top:40px">
+      <p>Wart ihr da und hat es euch gefallen? Zwei Minuten auf Google helfen uns enorm weiter.</p>
+      <a class="btn-google google-review-link" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.3h5.9c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.1-2 3.4-4.9 3.4-8.3z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.4 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v2.9C3.7 20.5 7.5 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.8c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2V6.5H1.8A11 11 0 0 0 .6 11.6c0 1.8.4 3.5 1.2 5.1z"/><path fill="#EA4335" d="M12 4.5c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.1 15.1 0 12 0 7.5 0 3.7 2.5 1.8 6.5l3.8 2.9c.9-2.7 3.4-4.9 6.4-4.9z"/></svg>
+        Bewertung auf Google hinterlassen
+      </a>
+    </div>
+  </div>
+</section>
+
 <div class="quote">
   <div class="wrap">
     <div class="quote-thai rise">สุขภาพดี</div>
@@ -560,16 +727,61 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
     <div class="foot-bot">
       <span>© 2026 Sri Trang Thaimassage Düsseldorf</span>
       <div class="socials">
-        <a href="https://www.instagram.com/sri.trang.thaimassage/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.tiktok.com/@sritrangthaimassa" target="_blank" rel="noopener">TikTok</a>
-        <a href="https://www.facebook.com/people/Sri-Trang-Thaimassage-Düsseldorf/100091730442006/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/sri.trang.thaimassage/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@sritrangthaimassa" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.4 3h2.6c.3 1.9 1.6 3.4 3.6 3.8v2.7c-1.4 0-2.7-.4-3.6-1.1v6.2a5.4 5.4 0 1 1-4.6-5.3v2.8a2.6 2.6 0 1 0 2 2.5V3z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/people/Sri-Trang-Thaimassage-Düsseldorf/100091730442006/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 21v-7h2.4l.4-3H14V9.1c0-.9.3-1.5 1.6-1.5H17V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H8v3h2.6v7H14z"/></svg>
+        </a>
+        <a href="#" class="google-review-link" target="_blank" rel="noopener" aria-label="Google Bewertung">
+          <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.3h5.9c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.1-2 3.4-4.9 3.4-8.3z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.4 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v2.9C3.7 20.5 7.5 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.8c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2V6.5H1.8A11 11 0 0 0 .6 11.6c0 1.8.4 3.5 1.2 5.1z"/><path fill="#EA4335" d="M12 4.5c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.1 15.1 0 12 0 7.5 0 3.7 2.5 1.8 6.5l3.8 2.9c.9-2.7 3.4-4.9 6.4-4.9z"/></svg>
+        </a>
       </div>
     </div>
   </div>
 </footer>
 
+<div class="review-float" id="reviewFloat">
+  <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.3h5.9c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.1-2 3.4-4.9 3.4-8.3z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.4 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v2.9C3.7 20.5 7.5 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.8c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2V6.5H1.8A11 11 0 0 0 .6 11.6c0 1.8.4 3.5 1.2 5.1z"/><path fill="#EA4335" d="M12 4.5c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.1 15.1 0 12 0 7.5 0 3.7 2.5 1.8 6.5l3.8 2.9c.9-2.7 3.4-4.9 6.4-4.9z"/></svg>
+  <a href="#" class="google-review-link" target="_blank" rel="noopener">Gefällt's dir? Bewerte uns auf Google</a>
+  <button type="button" id="reviewFloatClose" aria-label="Schließen">✕</button>
+</div>
+
 <script src="booking-widget.js"></script>
 <script>
+// ── Google review link — set the Place ID once, every .google-review-link updates itself
+var GOOGLE_PLACE_ID = 'DEIN_GOOGLE_PLACE_ID'; // TODO: echte Place-ID eintragen (siehe Kommentar im <head>)
+(function(){
+  var url = 'https://search.google.com/local/writereview?placeid=' + GOOGLE_PLACE_ID;
+  document.querySelectorAll('.google-review-link').forEach(function(a){ a.href = url; });
+})();
+
+// ── floating review nudge: shows after scrolling past the hero, remembers if dismissed
+(function(){
+  var float = document.getElementById('reviewFloat');
+  var closeBtn = document.getElementById('reviewFloatClose');
+  if (!float || !closeBtn) return;
+
+  var dismissedKey = 'reviewFloatDismissed';
+  var dismissed = false;
+  try { dismissed = localStorage.getItem(dismissedKey) === '1'; } catch(e) {}
+  if (dismissed) return;
+
+  function check(){
+    if (window.scrollY > window.innerHeight * 0.9) float.classList.add('show');
+  }
+  window.addEventListener('scroll', check, {passive:true});
+  check();
+
+  closeBtn.addEventListener('click', function(){
+    float.classList.remove('show');
+    try { localStorage.setItem(dismissedKey, '1'); } catch(e) {}
+  });
+})();
+
 // ── sticky nav
 var nav = document.getElementById('nav');
 function onScroll(){ nav.classList.toggle('stuck', window.scrollY > 24); }
