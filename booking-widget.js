@@ -168,7 +168,9 @@
               { id: 'stone',   name: 'Hot Stone Massage · 68 €',          duration: 60 },
               { id: 'stress',  name: 'Anti Stress Massage · 58 €',        duration: 60 },
               { id: 'fuss',    name: 'Fuß Reflexzonen Massage · 53 €',    duration: 60 },
-              { id: 'kopf',    name: 'Kopf Massage · 53 €',               duration: 60 }
+              { id: 'kopf',    name: 'Kopf Massage · 53 €',               duration: 60 },
+              { id: 'sport',   name: 'Sport Massage · 58 €',              duration: 60 },
+              { id: 'stempel', name: 'Thailändische Kräuterstempel · 68 €', duration: 60 }
             ],
             // Mo geschlossen, Di–Sa 10–20, So 10–19
             hours: { 0: ['10:00-19:00'], 1: [], 2: ['10:00-20:00'], 3: ['10:00-20:00'],
@@ -206,7 +208,8 @@
 
     var state = {
       remote: null, service: null, date: null, time: null,
-      monthCursor: startOfMonth(new Date()), slots: null, loadingSlots: false
+      monthCursor: startOfMonth(new Date()), slots: null, loadingSlots: false,
+      pendingService: null
     };
 
     function startOfMonth(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
@@ -237,6 +240,16 @@
       var v = el('div', 'cbw-view');
       box.appendChild(v);
       return v;
+    }
+
+    /* jump straight to the calendar with a given service pre-selected —
+       used when someone clicks a massage in the price list above */
+    function selectServiceById(id) {
+      if (!state.remote) { state.pendingService = id; return; } // config not loaded yet
+      var matches = state.remote.services.filter(function (s) { return s.id === id; });
+      if (!matches.length) return;
+      state.service = matches[0]; state.date = null; state.time = null; state.slots = null;
+      renderCalendar();
     }
 
     /* step 1: services */
@@ -422,11 +435,18 @@
     box.appendChild(el('div', 'cbw-hint', t.loading));
     api('config', {}).then(function (r) {
       state.remote = r;
-      renderServices();
+      if (state.pendingService) {
+        var id = state.pendingService; state.pendingService = null;
+        selectServiceById(id);
+      } else {
+        renderServices();
+      }
     }).catch(function () {
       box.innerHTML = '';
       box.appendChild(el('div', 'cbw-err', t.errGeneric));
     });
+
+    return { selectService: selectServiceById };
   }
 
   global.BookingWidget = { init: init };

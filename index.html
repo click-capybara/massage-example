@@ -189,7 +189,7 @@ section{padding:100px 0;position:relative}
   align-items:baseline;gap:26px;
   padding:26px 4px;border-bottom:1px solid var(--line);
   transition:padding-left .28s,background .28s;
-  position:relative;
+  position:relative;cursor:pointer;
 }
 .row::before{
   content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
@@ -198,6 +198,7 @@ section{padding:100px 0;position:relative}
 }
 .row:hover{padding-left:20px;background:rgba(237,228,211,.022)}
 .row:hover::before{transform:scaleY(1)}
+.row:focus-visible{outline:2px solid var(--marigold);outline-offset:-2px;border-radius:4px}
 
 .svc-name{font-family:var(--display);font-size:23px;font-weight:400;letter-spacing:-.01em}
 .svc-desc{font-size:14.5px;color:var(--sand-mut);margin-top:5px;max-width:48ch;line-height:1.55}
@@ -405,11 +406,36 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
   .review-head{flex-direction:column;align-items:flex-start}
 }
 
-/* ══ INSTAGRAM EMBED ══ */
-.insta-card{
-  background:var(--sand);border-radius:18px;padding:8px;
-  display:flex;justify-content:center;overflow:hidden;
-  box-shadow:0 30px 70px -30px rgba(0,0,0,.6);
+/* ══ INSTAGRAM PREVIEW MOCKUP (until a real post is embedded) ══ */
+.insta-card{display:flex;justify-content:center}
+.insta-mock{
+  width:370px;max-width:100%;background:#fff;border-radius:10px;overflow:hidden;
+  border:1px solid #dbdbdb;box-shadow:0 30px 70px -30px rgba(0,0,0,.6);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+.insta-mock-head{display:flex;align-items:center;gap:10px;padding:11px 14px}
+.insta-avatar{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#E0913C,#7FA893);
+}
+.insta-mock-user b{display:block;font-size:13px;font-weight:600;color:#000;line-height:1.3}
+.insta-mock-user span{font-size:11px;color:#8e8e8e}
+.insta-mock-photo{
+  width:100%;aspect-ratio:1/1;
+  background:linear-gradient(135deg,#1B3630,#0C1B18);
+  display:flex;align-items:center;justify-content:center;
+}
+.insta-mock-photo svg{width:60px;height:60px;color:#E0913C;opacity:.85}
+.insta-mock-actions{display:flex;align-items:center;gap:14px;padding:10px 14px 2px}
+.insta-mock-actions svg{width:22px;height:22px;color:#262626}
+.insta-mock-actions .spacer{flex:1}
+.insta-mock-likes{padding:6px 14px 0;font-size:13px;font-weight:600;color:#000}
+.insta-mock-caption{padding:5px 14px 0;font-size:13px;color:#000;line-height:1.45}
+.insta-mock-caption b{font-weight:600;margin-right:4px}
+.insta-mock-time{padding:6px 14px 14px;font-size:10px;letter-spacing:.03em;color:#8e8e8e;text-transform:uppercase}
+.insta-mock-note{
+  text-align:center;font-size:13px;color:var(--sand-mut);
+  max-width:44ch;margin:20px auto 0;
 }
 .insta-follow{margin-top:28px;display:flex;justify-content:center}
 
@@ -510,7 +536,7 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
     </div>
 
     <div class="ledger rise">
-      <div class="row">
+      <div class="row" data-service="thai" tabindex="0" role="button">
         <div>
           <div class="svc-name">Traditionelle Thai Massage</div>
           <div class="svc-desc">Der Klassiker: Dehnung, Akupressur und Gelenkarbeit auf der Matte — kräftig, ohne Öl, in bequemer Kleidung.</div>
@@ -519,7 +545,7 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
         <div class="price partner"><b>98 €</b><small>Partner</small></div>
       </div>
 
-      <div class="row">
+      <div class="row" data-service="aroma" tabindex="0" role="button">
         <div>
           <div class="svc-name">Hot Aroma Öl Massage</div>
           <div class="svc-desc">Warmes, duftendes Öl und fließende Bewegungen. Sanfter als die traditionelle Variante — gut für den ersten Besuch.</div>
@@ -528,7 +554,7 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
         <div class="price partner"><b>108 €</b><small>Partner</small></div>
       </div>
 
-      <div class="row">
+      <div class="row" data-service="stone" tabindex="0" role="button">
         <div>
           <div class="svc-name">Hot Stone Massage</div>
           <div class="svc-desc">Erwärmte Basaltsteine lösen tiefsitzende Verspannungen. Die intensivste Wärme, die wir anbieten.</div>
@@ -537,7 +563,7 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
         <div class="price partner"><b>128 €</b><small>Partner</small></div>
       </div>
 
-      <div class="row">
+      <div class="row" data-service="stress" tabindex="0" role="button">
         <div>
           <div class="svc-name">Anti Stress Massage</div>
           <div class="svc-desc">Fokus auf Nacken, Schultern und Rücken — für alles, was der Schreibtisch angerichtet hat.</div>
@@ -546,7 +572,7 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
         <div class="price none"><b>—</b><small>Partner</small></div>
       </div>
 
-      <div class="row">
+      <div class="row" data-service="fuss" tabindex="0" role="button">
         <div>
           <div class="svc-name">Fuß Reflexzonen Massage</div>
           <div class="svc-desc">Gezielter Druck auf Reflexpunkte der Füße. Wirkt weit über die Füße hinaus.</div>
@@ -555,7 +581,7 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
         <div class="price none"><b>—</b><small>Partner</small></div>
       </div>
 
-      <div class="row">
+      <div class="row" data-service="kopf" tabindex="0" role="button">
         <div>
           <div class="svc-name">Kopf Massage</div>
           <div class="svc-desc">Kopfhaut, Nacken und Gesicht. Kurz, ruhig, erstaunlich wirksam gegen Kopfschmerzen.</div>
@@ -564,7 +590,7 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
         <div class="price none"><b>—</b><small>Partner</small></div>
       </div>
 
-      <div class="row">
+      <div class="row" data-service="sport" tabindex="0" role="button">
         <div>
           <div class="svc-name">Sport Massage</div>
           <div class="svc-desc">Rücken und Beine, kräftig bearbeitet. Für alle, die viel trainieren oder viel stehen.</div>
@@ -573,7 +599,7 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
         <div class="price none"><b>—</b><small>Partner</small></div>
       </div>
 
-      <div class="row">
+      <div class="row" data-service="stempel" tabindex="0" role="button">
         <div>
           <div class="svc-name">Thailändische Kräuterstempel</div>
           <div class="svc-desc">Gedämpfte Kräuterbeutel, warm auf den Körper gepresst — Duft und Wärme zugleich.</div>
@@ -713,12 +739,44 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
       <p>Frisch aus dem Studio — und mehr davon auf unserem Profil.</p>
     </div>
 
-    <!-- TODO: data-instgrm-permalink regelmäßig auf den aktuellen Beitrag aktualisieren
-         (Post öffnen → "Link kopieren" → alles nach dem "?" weglassen). Instagram liefert
-         den Inhalt selbst aus, es braucht keinen API-Key für dieses offizielle Embed. -->
+    <!--
+      Vorschau-Mockup unten, damit die Sektion schon jetzt gut aussieht (kein API-Zugriff nötig).
+      Sobald ihr einen Post-Link habt: den <div class="insta-card">…</div> Block durch das
+      offizielle Instagram-Embed ersetzen, z.B.:
+
+      <div class="insta-card rise">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/EUER_POST_ID/" data-instgrm-version="14" style="margin:0 auto"></blockquote>
+      </div>
+      <script async src="//www.instagram.com/embed.js"></script>
+
+      Post öffnen → "..." → "Einbetten" → Link aus data-instgrm-permalink übernehmen (alles nach
+      dem "?" weglassen). Kein API-Key nötig, Instagram liefert den Inhalt selbst aus.
+    -->
     <div class="insta-card rise">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DEIN_POST_ID/" data-instgrm-version="14" style="margin:0 auto"></blockquote>
+      <div class="insta-mock">
+        <div class="insta-mock-head">
+          <div class="insta-avatar"></div>
+          <div class="insta-mock-user">
+            <b>sri.trang.thaimassage</b>
+            <span>Pempelforter Str. 47, Düsseldorf</span>
+          </div>
+        </div>
+        <div class="insta-mock-photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21c4-3 7-6.5 7-10.5A7 7 0 0 0 12 3a7 7 0 0 0-7 7.5C5 14.5 8 18 12 21Z"/><path d="M12 21c-1.5-3-1.5-9 3-13"/></svg>
+        </div>
+        <div class="insta-mock-actions">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.8 8.6c0 5-8.8 10.4-8.8 10.4S3.2 13.6 3.2 8.6a4.8 4.8 0 0 1 8.8-2.7 4.8 4.8 0 0 1 8.8 2.7Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.5 8.5 0 0 1-12.4 7.6L3 20l1-5.4A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>
+          <span class="spacer"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h12v18l-6-4-6 4Z"/></svg>
+        </div>
+        <div class="insta-mock-likes">128 Mal „Gefällt mir“</div>
+        <div class="insta-mock-caption"><b>sri.trang.thaimassage</b>Neue Woche, neue Ruhe 🌿 Termine online buchen — Link in der Bio.</div>
+        <div class="insta-mock-time">Vorschau</div>
+      </div>
     </div>
+    <p class="insta-mock-note rise">So sieht die Karte aus, sobald ein echter Post eingebunden ist — schick uns einfach den Link zu einem Beitrag, dann tauschen wir das Mockup gegen das echte Live-Embed.</p>
 
     <div class="insta-follow rise">
       <a class="btn btn-ghost" href="https://www.instagram.com/sri.trang.thaimassage/" target="_blank" rel="noopener">
@@ -728,7 +786,6 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
     </div>
   </div>
 </section>
-<script async src="//www.instagram.com/embed.js"></script>
 
 <div class="quote">
   <div class="wrap">
@@ -857,11 +914,23 @@ if ('IntersectionObserver' in window) {
 }
 
 // ── booking widget
-BookingWidget.init({
+var booking = BookingWidget.init({
   el: '#booking',
   endpoint: 'mock',                       // → Apps-Script /exec URL des Kunden
   lang: 'de',
   accent: '#E0913C'
+});
+
+// ── massage in der Liste anklicken → direkt mit Auswahl beim Kalender einsteigen
+document.querySelectorAll('.row[data-service]').forEach(function (row) {
+  function jump() {
+    booking.selectService(row.dataset.service);
+    document.getElementById('buchen').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  row.addEventListener('click', jump);
+  row.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); jump(); }
+  });
 });
 </script>
 </body>
