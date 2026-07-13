@@ -40,8 +40,7 @@
   ],
   "sameAs": [
     "https://www.instagram.com/sri.trang.thaimassage/",
-    "https://www.tiktok.com/@sritrangthaimassa",
-    "https://www.facebook.com/people/Sri-Trang-Thaimassage-Düsseldorf/100091730442006/"
+    "https://www.tiktok.com/@sritrangthaimassa"
   ]
 }
 </script>
@@ -406,6 +405,14 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
   .review-head{flex-direction:column;align-items:flex-start}
 }
 
+/* ══ INSTAGRAM EMBED ══ */
+.insta-card{
+  background:var(--sand);border-radius:18px;padding:8px;
+  display:flex;justify-content:center;overflow:hidden;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.6);
+}
+.insta-follow{margin-top:28px;display:flex;justify-content:center}
+
 /* ══ FOOTER SOCIAL ICONS ══ */
 .socials{display:flex;gap:12px}
 .socials a{
@@ -448,9 +455,6 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
       </a>
       <a href="https://www.tiktok.com/@sritrangthaimassa" target="_blank" rel="noopener" aria-label="TikTok">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.4 3h2.6c.3 1.9 1.6 3.4 3.6 3.8v2.7c-1.4 0-2.7-.4-3.6-1.1v6.2a5.4 5.4 0 1 1-4.6-5.3v2.8a2.6 2.6 0 1 0 2 2.5V3z"/></svg>
-      </a>
-      <a href="https://www.facebook.com/people/Sri-Trang-Thaimassage-Düsseldorf/100091730442006/" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 21v-7h2.4l.4-3H14V9.1c0-.9.3-1.5 1.6-1.5H17V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H8v3h2.6v7H14z"/></svg>
       </a>
     </div>
     <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false">☰</button>
@@ -701,6 +705,31 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
   </div>
 </section>
 
+<section id="instagram">
+  <div class="wrap">
+    <div class="sec-head rise">
+      <div class="eyebrow">Instagram</div>
+      <h2>Der letzte <em>Post</em>.</h2>
+      <p>Frisch aus dem Studio — und mehr davon auf unserem Profil.</p>
+    </div>
+
+    <!-- TODO: data-instgrm-permalink regelmäßig auf den aktuellen Beitrag aktualisieren
+         (Post öffnen → "Link kopieren" → alles nach dem "?" weglassen). Instagram liefert
+         den Inhalt selbst aus, es braucht keinen API-Key für dieses offizielle Embed. -->
+    <div class="insta-card rise">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DEIN_POST_ID/" data-instgrm-version="14" style="margin:0 auto"></blockquote>
+    </div>
+
+    <div class="insta-follow rise">
+      <a class="btn btn-ghost" href="https://www.instagram.com/sri.trang.thaimassage/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:15px;height:15px;margin-right:8px;vertical-align:-2px"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+        Auf Instagram folgen
+      </a>
+    </div>
+  </div>
+</section>
+<script async src="//www.instagram.com/embed.js"></script>
+
 <div class="quote">
   <div class="wrap">
     <div class="quote-thai rise">สุขภาพดี</div>
@@ -732,9 +761,6 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
         </a>
         <a href="https://www.tiktok.com/@sritrangthaimassa" target="_blank" rel="noopener" aria-label="TikTok">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.4 3h2.6c.3 1.9 1.6 3.4 3.6 3.8v2.7c-1.4 0-2.7-.4-3.6-1.1v6.2a5.4 5.4 0 1 1-4.6-5.3v2.8a2.6 2.6 0 1 0 2 2.5V3z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/people/Sri-Trang-Thaimassage-Düsseldorf/100091730442006/" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 21v-7h2.4l.4-3H14V9.1c0-.9.3-1.5 1.6-1.5H17V5c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V11H8v3h2.6v7H14z"/></svg>
         </a>
         <a href="#" class="google-review-link" target="_blank" rel="noopener" aria-label="Google Bewertung">
           <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.5 12.2c0-.8-.1-1.5-.2-2.2H12v4.3h5.9c-.3 1.4-1.1 2.6-2.3 3.4v2.8h3.7c2.1-2 3.4-4.9 3.4-8.3z"/><path fill="#34A853" d="M12 23c3.1 0 5.7-1 7.6-2.8l-3.7-2.8c-1 .7-2.4 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v2.9C3.7 20.5 7.5 23 12 23z"/><path fill="#FBBC05" d="M5.6 13.8c-.2-.7-.4-1.4-.4-2.2s.1-1.5.4-2.2V6.5H1.8A11 11 0 0 0 .6 11.6c0 1.8.4 3.5 1.2 5.1z"/><path fill="#EA4335" d="M12 4.5c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.1 15.1 0 12 0 7.5 0 3.7 2.5 1.8 6.5l3.8 2.9c.9-2.7 3.4-4.9 6.4-4.9z"/></svg>
