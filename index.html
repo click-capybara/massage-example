@@ -11,9 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600&family=Outfit:wght@300;400;500;600&family=Noto+Sans+Thai:wght@300;600&display=swap" rel="stylesheet">
 <!--
   TODO vor Live-Schaltung:
-  1) GOOGLE_PLACE_ID weiter unten im <script> (kurz vor </body>) durch die echte Place-ID ersetzen.
-     Am einfachsten im Google Business Profil: "Mehr Bewertungen erhalten" -> ergibt einen Kurzlink
-     wie g.page/r/XXXXXXXX/review — XXXXXXXX ist die Place-ID.
+  1) Instagramm verknüpfen
   2) Die Platzhalter "X,X" / "XXX Bewertungen" im Abschnitt #bewertungen durch echte, aktuelle Werte
      aus dem Google-Profil ersetzen (nicht raten — Google erlaubt kein erfundenes Rating-Markup).
   3) Die drei Beispielzitate im Abschnitt #bewertungen durch echte, mit Erlaubnis übernommene
@@ -835,8 +833,8 @@ footer{background:var(--teak-deep);padding:60px 0 34px}
 
 <script src="booking-widget.js"></script>
 <script>
-// ── Google review link — set the Place ID once, every .google-review-link updates itself
-var GOOGLE_PLACE_ID = 'ChIJ__kYVS_KuEcR7zdcJhrub4g'; // TODO: echte Place-ID eintragen (siehe Kommentar im <head>)
+// ── Google review link — set the Place ID once, every .google-review-link updates itself //
+var GOOGLE_PLACE_ID = 'ChIJ__kYVS_KuEcR7zdcJhrub4g'; // TODO: echte Place-ID eintragen (siehe Kommentar im <head>) //
 (function(){
   var url = 'https://search.google.com/local/writereview?placeid=' + GOOGLE_PLACE_ID;
   document.querySelectorAll('.google-review-link').forEach(function(a){ a.href = url; });
