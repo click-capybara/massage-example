@@ -43,8 +43,7 @@
       weekdays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
       months: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli',
                'August', 'September', 'Oktober', 'November', 'Dezember'],
-      at: 'um', oclock: 'Uhr',
-      summary: function (s, d, t) { return s + ' · ' + d + ' ' + this.at + ' ' + t + ' ' + this.oclock; }
+      at: 'um', oclock: 'Uhr'
     },
     en: {
       chooseService: 'What would you like to book?',
@@ -70,8 +69,7 @@
       weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
       months: ['January', 'February', 'March', 'April', 'May', 'June', 'July',
                'August', 'September', 'October', 'November', 'December'],
-      at: 'at', oclock: '',
-      summary: function (s, d, t) { return s + ' · ' + d + ' ' + this.at + ' ' + t; }
+      at: 'at', oclock: ''
     }
   };
 
@@ -271,6 +269,15 @@
       v.appendChild(list);
     }
 
+    /* persistent summary — grows as service/date/time get picked, shown from step 2 onward */
+    function summaryBar() {
+      if (!state.service) return null;
+      var parts = [state.service.name];
+      if (state.date) parts.push(niceDate(state.date, lang));
+      if (state.time) parts.push(state.time + (lang === 'de' ? ' ' + t.oclock : ''));
+      return el('div', 'cbw-sum', parts.join(' · '));
+    }
+
     /* step 2: calendar + slots */
     function isDayOpen(d) {
       var hours = state.remote.hours || {};
@@ -284,6 +291,8 @@
       var v = view();
       v.appendChild(steps(2));
       v.appendChild(el('h3', null, t.chooseTime));
+      var sum = summaryBar();
+      if (sum) v.appendChild(sum);
 
       var head = el('div', 'cbw-cal-head');
       var prev = el('button', 'cbw-nav', '‹');
@@ -360,8 +369,8 @@
       var v = view();
       v.appendChild(steps(3));
       v.appendChild(el('h3', null, t.yourDetails));
-      v.appendChild(el('div', 'cbw-sum',
-        t.summary(state.service.name, niceDate(state.date, lang), state.time)));
+      var sum = summaryBar();
+      if (sum) v.appendChild(sum);
 
       function field(labelText, tag, type, name) {
         v.appendChild(el('label', null, labelText));
