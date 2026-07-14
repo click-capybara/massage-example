@@ -198,7 +198,7 @@
 
     var lang = cfg.lang === 'en' ? 'en' : 'de';
     var t = I18N[lang];
-    var mock = cfg.endpoint === 'mock';
+    var mock = cfg.endpoint === 'https://script.google.com/macros/s/AKfycbyW3GrfjFvlbPT_Oyimokeq_u6h65QiW3Q2i6cDTHFIVYz8gZ17BukklRsJ5meus0SW/exec';
 
     var box = el('div', 'cbw');
     if (cfg.accent) box.style.setProperty('--cbw-accent', cfg.accent);
