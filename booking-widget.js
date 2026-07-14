@@ -245,7 +245,7 @@
     function selectServiceById(id) {
       if (!state.remote) { state.pendingService = id; return; } // config not loaded yet
       var matches = state.remote.services.filter(function (s) { return s.id === id; });
-      if (!matches.length) return;
+      if (!matches.length) { renderServices(); return; } // no match → just show the normal list
       state.service = matches[0]; state.date = null; state.time = null; state.slots = null;
       renderCalendar();
     }
